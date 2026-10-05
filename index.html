@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>CSS3 трансформациялар — оқытушы беті</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header><h1>✨ CSS3 трансформациялар: 2D / 3D</h1><p>Веб-бағдарламалау · ашық сабақ</p></header><nav id="nav"><button class="on" data-t="s1">1. Үй тапсырмасы</button><button data-t="s2">2. Жаңа тема</button><button data-t="s3">3. Практика</button><button data-t="s4">4. Рефлексия</button></nav><main><section id="s1" class="on"><h2>📱 CSS Media Queries — @media</h2>
+<div class="grid">
+<div class="c"><h3>📱 Смартфон</h3><code class="i">&lt;576px</code><pre>@media (max-width:575px){
+ .col{width:100%}}</pre></div>
+<div class="c"><h3>📲 Планшет</h3><code class="i">768px – 1024px</code><pre>@media (min-width:768px)
+ and (max-width:1024px){
+ .col{width:50%}}</pre></div>
+<div class="c"><h3>🖥 ПК</h3><code class="i">&gt;1024px</code><pre>@media (min-width:1025px){
+ .col{width:33.3%}}</pre></div></div>
+<p><b>Breakpoint</b> — экран енінің шегі: одан асқанда немесе өткенде беттің стилі өзгереді.</p>
+<h2>🎯 Тақтаға шығу викторинасы <span class="sc">Ұпай: <span id="pts">0</span></span></h2>
+<p style="color:var(--mu)">Студент нөмірді таңдап, сұраққа жауап береді.</p>
+<div class="qs" id="qs"></div><div class="c" id="qbox">Сұрақ нөмірін таңдаңыз 👆</div></section><section id="s2"><h2>🔄 Жаңа тема: CSS3 трансформациялар</h2>
+<div class="qrblock"><div class="c qrb"><div id="qrm"></div><div><b>📲 Лекция PDF — QR сканерлеп, телефоннан оқыңыз</b><br><a id="lkm" target="_blank"></a><br><button class="btn" data-q="m" style="margin-top:8px">📺 QR бүкіл экранға</button> <a class="btn" href="lecture.pdf" target="_blank" style="text-decoration:none;display:inline-block;margin-top:8px">📄 Лекцияны ашу (PDF)</a></div></div></div>
+<div class="c"><div id="sl"></div><div class="nv"><button class="btn" id="pv">◀ Алдыңғы</button><b id="cnt"></b><button class="btn" id="nx">Келесі ▶</button></div></div>
+<h2>🧪 Интерактивті құмсалғыш</h2>
+<div class="sand"><div class="c"><div class="stage"><div id="box">CSS</div></div></div>
+<div class="c" id="ctl"></div></div>
+<pre id="code"></pre><button class="btn" id="cp">📋 Кодты көшіру</button></section><section id="s3"><h2>💻 Практикалық тапсырма</h2><div class="c qrb"><div id="qrt"></div><div><b>Тапсырма таңдау және жіберу</b><br><a id="lkt" target="_blank"></a><br><button class="btn" data-q="t" style="margin-top:8px">📺 QR бүкіл экранға</button></div></div>
+<p><a class="btn" href="tasks.html" target="_blank" style="text-decoration:none;display:inline-block">📝 Тапсырмалар бетін ашу →</a></p><h3>📥 Студент шешімдері (нақты уақытта)</h3><div class="c" style="overflow-x:auto"><table id="sol"></table></div></section><section id="s4"><h2>🌟 Рефлексия</h2><div class="c qrb"><div id="qrr"></div><div><b>Рефлексияны толтыру</b><br><a id="lkr" target="_blank"></a><br><button class="btn" data-q="r" style="margin-top:8px">📺 QR бүкіл экранға</button></div></div>
+<p><a class="btn" href="reflect.html" target="_blank" style="text-decoration:none;display:inline-block">🌟 Рефлексия бетін ашу →</a></p><h2>📊 Нәтижелер <span class="sc" style="float:none">Қатысқандар: <span id="tot">0</span></span></h2><div class="grid"><div class="c"><h3>Түсіну деңгейі</h3><div class="bars" id="ch1"></div></div><div class="c"><h3>Қызықты функция</h3><div class="bars" id="ch2"></div></div></div></section></main>
+<script src="core.js"></script><script src="slides.js"></script><script src="index.js"></script></body></html>
