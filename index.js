@@ -12,12 +12,21 @@ const Q=[
 {c:'.row{display:flex; flex-direction:column}',q:'Элементтер қалай тұрады?',o:['Көлденең','Тік бағанда','Көрінбейді'],a:1},
 {c:'.row{display:flex; justify-content:center}',q:'justify-content:center не істейді?',o:['Төмен түсіреді','Оңға ығыстырады','Көлденең ортаға қояды'],a:2},
 {c:'.box{width:100px; height:100px; border-radius:50%}',q:'Нәтиже қандай фигура?',o:['Шеңбер','Шаршы','Үшбұрыш'],a:0}];
-let pts=0,done={};
+let pts=0,ch={};const SV='quiz_hw1';
+try{const d=JSON.parse(localStorage.getItem(SV));if(d){pts=d.pts||0;ch=d.ch||{}}}catch(e){}
+const save=()=>{try{localStorage.setItem(SV,JSON.stringify({pts,ch}))}catch(e){}};
+$('#pts').textContent=pts;
 $('#qs').innerHTML=Q.map((_,i)=>`<button data-i="${i}">${i+1}</button>`).join('');
-$$('#qs button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,q=Q[i];
+const paint=()=>$$('#qs button').forEach(b=>b.classList.toggle('d',ch[b.dataset.i]!==undefined));
+function showQ(i){const q=Q[i];
 $('#qbox').innerHTML=`<pre>${q.c}</pre><b>${q.q}</b>`+q.o.map((n,k)=>`<button class="opt" data-k="${k}">${typeof n=='number'?n+' баған<div class="mini">'+'<i></i>'.repeat(n)+'</div>':n}</button>`).join('');
-$$('.opt').forEach(o=>o.onclick=()=>{if(done[i]!==undefined)return;const ok=+o.dataset.k===q.a;done[i]=ok;o.classList.add(ok?'ok':'no');if(!ok)$$('.opt')[q.a].classList.add('ok');
-if(ok){pts+=10;$('#pts').textContent=pts}beep(ok);o.insertAdjacentHTML('beforeend',`<b>${ok?' ✅ Дұрыс! +10':' ❌ Бұрыс'}</b>`);b.classList.add('d')})});
+const opts=$$('.opt');
+const mark=k=>{const ok=k===q.a;opts[k].classList.add(ok?'ok':'no');if(!ok)opts[q.a].classList.add('ok');opts[k].insertAdjacentHTML('beforeend',`<b>${ok?' ✅ Дұрыс! +10':' ❌ Бұрыс'}</b>`)};
+if(ch[i]!==undefined)mark(ch[i]);
+opts.forEach(o=>o.onclick=()=>{if(ch[i]!==undefined)return;const k=+o.dataset.k;ch[i]=k;if(k===q.a){pts+=10;$('#pts').textContent=pts}save();beep(k===q.a);mark(k);paint()})}
+$$('#qs button').forEach(b=>b.onclick=()=>showQ(+b.dataset.i));paint();
+$('#qs').insertAdjacentHTML('afterend','<button class="btn" id="qrs" style="background:var(--no);margin-bottom:10px">↺ Қайта бастау</button>');
+$('#qrs').onclick=()=>{if(!confirm('Барлық жауаптар мен ұпайлар өшіріледі. Жалғастырасыз ба?'))return;ch={};pts=0;save();$('#pts').textContent=0;$('#qbox').textContent='Сұрақ нөмірін таңдаңыз 👆';paint()};
 const base=location.origin+location.pathname.replace(/[^/]*$/,''),U={m:base+'lecture.pdf',t:base+'tasks.html',r:base+'reflect.html'};
 const QI={m:'qr-lecture.png',t:'qr-task.png',r:'qr-reflect.png'};
 function putQR(el,k,z){const im=new Image();im.onload=()=>{el.innerHTML='';im.style.cssText=`width:${z}px;height:${z}px;object-fit:contain;display:block`;el.appendChild(im)};im.onerror=()=>{el.innerHTML='';try{new QRCode(el,{text:U[k],width:z,height:z})}catch(x){el.textContent='QR жүктелмеді'}};im.src=QI[k]}
